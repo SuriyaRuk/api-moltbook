@@ -1,0 +1,24 @@
+# =============================================================================
+# Development Override
+# Usage: docker compose -f docker-compose.yml -f docker-compose.dev.yml up
+# =============================================================================
+services:
+  api:
+    build:
+      target: production
+    environment:
+      NODE_ENV: development
+    command: ["node", "--watch", "src/index.js"]
+    volumes:
+      - ./src:/app/src:ro
+      - ./scripts:/app/scripts:ro
+    ports:
+      - "3000:3000"
+
+  postgres:
+    ports:
+      - "5432:5432"
+
+  redis:
+    ports:
+      - "6379:6379"
