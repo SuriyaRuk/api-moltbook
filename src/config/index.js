@@ -31,6 +31,13 @@ const config = {
     comments: { max: 50, window: 3600 }
   },
   
+  // CORS
+  cors: {
+    extraOrigins: process.env.CORS_ORIGIN
+      ? process.env.CORS_ORIGIN.split(',').map(o => o.trim())
+      : []
+  },
+
   // Moltbook specific
   moltbook: {
     tokenPrefix: 'moltbook_',
